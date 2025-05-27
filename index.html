@@ -1,31 +1,193 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opere d'Arte</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-_8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Una webapp educativa sulla fotosintesi clorofilliana.">
+    <title>WebApp Fotosintesi: L'Energia Verde della Vita</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Opere d'Arte</h1>
-  <ul>
-    <li onclick="mostraTesto('cenacolo')">Cenacolo</li>
-    <li onclick="mostraTesto('gioconda')">Gioconda</li>
-    <li onclick="mostraTesto('cappella')">Cappella Sistina</li>
-  </ul>
-  <div id="testo" class="testo"></div>
+    <header>
+        <div class="container">
+            <h1>☀️ Fotosintesi: L'Energia Verde della Vita 🌿</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cos-e">Cos'è</a></li>
+                    <li><a href="#protagonisti">I Protagonisti</a></li>
+                    <li><a href="#fasi">Le Fasi</a></li>
+                    <li><a href="#prodotti">I Prodotti</a></li>
+                    <li><a href="#importanza">Importanza</a></li>
+                    <li><a href="#quiz">Quiz</a></li>
+                    <li><a href="#glossario">Glossario</a></li>
+                    <li><a href="#risorse">Risorse</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <script>
-    const testi = {
-      cenacolo: "Il Cenacolo di Leonardo da Vinci rappresenta l'Ultima Cena e si trova a Milano.",
-      gioconda: "La Gioconda è il celebre ritratto dipinto da Leonardo da Vinci, esposto al Louvre.",
-      cappella: "La Cappella Sistina ospita gli affreschi di Michelangelo, inclusa la Creazione di Adamo."
-    };
+    <main>
+        <section id="home" class="active">
+            <div class="container">
+                <h2>Benvenuti!</h2>
+                <img src="images/photosynthesis_intro.jpg" alt="Illustrazione della fotosintesi" style="width:100%;max-width:500px;display:block;margin:auto;">
+                <p>Esplora il meraviglioso processo della fotosintesi clorofilliana, il meccanismo che alimenta la vita sulla Terra, trasformando la luce solare in energia vitale. Scopri come le piante producono ossigeno e il cibo che sostiene interi ecosistemi.</p>
+                <p>Naviga tra le sezioni per approfondire ogni aspetto di questo affascinante fenomeno naturale!</p>
+            </div>
+        </section>
 
-    function mostraTesto(chiave) {
-      document.getElementById('testo').textContent = testi[chiave];
-    }
-  </script>
+        <section id="cos-e">
+            <div class="container">
+                <h2>🌱 Cos'è la Fotosintesi?</h2>
+                <p>La fotosintesi clorofilliana è un processo biochimico fondamentale svolto da piante, alghe e alcuni batteri, che converte l'energia luminosa (solitamente dal Sole) in energia chimica, sotto forma di glucosio (uno zucchero).</p>
+                <p>Questa energia viene poi utilizzata dall'organismo per crescere e svolgere le proprie funzioni vitali. Un sottoprodotto cruciale della fotosintesi è l'ossigeno, essenziale per la respirazione della maggior parte degli esseri viventi.</p>
+                <h3>L'Equazione Generale:</h3>
+                <p class="formula">
+                    6CO<sub>2</sub> + 6H<sub>2</sub>O + Luce Solare &rarr; C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub>
+                </p>
+                <p><em>(Anidride Carbonica + Acqua + Energia Luminosa &rarr; Glucosio + Ossigeno)</em></p>
+                <h4>Chi la compie?</h4>
+                <p>Organismi autotrofi fotosintetici: piante terrestri e acquatiche, alghe (unicellulari e pluricellulari) e alcuni tipi di batteri come i cianobatteri.</p>
+                <h4>Dove avviene?</h4>
+                <p>Nelle piante e nelle alghe, la fotosintesi avviene all'interno di organelli specializzati chiamati <strong>cloroplasti</strong>, specificamente nelle cellule delle foglie e, in misura minore, nei fusti verdi.</p>
+            </div>
+        </section>
+
+        <section id="protagonisti">
+            <div class="container">
+                <h2>🔬 I Protagonisti del Processo</h2>
+                <article>
+                    <h3>La Luce Solare</h3>
+                    <p>L'energia primaria che innesca la fotosintesi. I fotoni della luce vengono assorbiti dai pigmenti.</p>
+                </article>
+                <article>
+                    <h3>La Clorofilla e Altri Pigmenti</h3>
+                    <p>La clorofilla (principalmente tipi 'a' e 'b') è il pigmento verde che cattura l'energia luminosa. Altri pigmenti, come i carotenoidi, aiutano ad assorbire diverse lunghezze d'onda della luce.</p>
+                </article>
+                <article>
+                    <h3>L'Acqua (H<sub>2</sub>O)</h3>
+                    <p>Assorbita dalle radici, fornisce elettroni e protoni per le reazioni e rilascia ossigeno come sottoprodotto.</p>
+                </article>
+                <article>
+                    <h3>L'Anidride Carbonica (CO<sub>2</sub>)</h3>
+                    <p>Assorbita dall'atmosfera attraverso gli stomi delle foglie, fornisce il carbonio necessario per costruire le molecole di zucchero.</p>
+                </article>
+                <article>
+                    <h3>I Cloroplasti</h3>
+                    <p>Le "fabbriche" cellulari dove avviene la fotosintesi. Contengono i tilacoidi (dove si svolge la fase luminosa) e lo stroma (dove si svolge il ciclo di Calvin).</p>
+                    </article>
+            </div>
+        </section>
+
+        <section id="fasi">
+            <div class="container">
+                <h2>⚙️ Le Due Fasi della Fotosintesi</h2>
+                <article>
+                    <h3>Fase Luminosa (o Luce-Dipendente)</h3>
+                    <p>Avviene nelle membrane dei tilacoidi. L'energia luminosa viene convertita in energia chimica (ATP e NADPH). L'acqua viene scissa (fotolisi) rilasciando ossigeno.</p>
+                    <ul>
+                        <li>Assorbimento della luce</li>
+                        <li>Fotolisi dell'acqua</li>
+                        <li>Trasporto degli elettroni</li>
+                        <li>Sintesi di ATP e NADPH</li>
+                    </ul>
+                    </article>
+                <article>
+                    <h3>Fase Oscura (o Luce-Indipendente / Ciclo di Calvin-Benson)</h3>
+                    <p>Avviene nello stroma dei cloroplasti. Utilizza l'ATP e il NADPH prodotti nella fase luminosa per fissare il CO<sub>2</sub> e produrre zuccheri (glucosio).</p>
+                    <ul>
+                        <li>Fissazione del CO<sub>2</sub></li>
+                        <li>Riduzione del carbonio</li>
+                        <li>Rigenerazione del RuBP</li>
+                    </ul>
+                    </article>
+            </div>
+        </section>
+
+        <section id="prodotti">
+            <div class="container">
+                <h2>🍬 I Prodotti della Fotosintesi</h2>
+                <article>
+                    <h3>Il Glucosio (C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>)</h3>
+                    <p>Lo zucchero prodotto, utilizzato dalla pianta come fonte di energia immediata, immagazzinato come amido per uso futuro, o convertito in cellulosa per la crescita strutturale.</p>
+                </article>
+                <article>
+                    <h3>L'Ossigeno (O<sub>2</sub>)</h3>
+                    <p>Un "rifiuto" del processo per la pianta, ma vitale per la respirazione della maggior parte degli organismi viventi, inclusi gli esseri umani.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="importanza">
+            <div class="container">
+                <h2>🌍 L'Importanza della Fotosintesi</h2>
+                <ul>
+                    <li><strong>Produzione di Ossigeno:</strong> Sostiene la vita aerobica.</li>
+                    <li><strong>Base delle Catene Alimentari:</strong> Produce il cibo (sotto forma di materia organica) che nutre quasi tutti gli ecosistemi.</li>
+                    <li><strong>Ciclo del Carbonio:</strong> Rimuove l'anidride carbonica dall'atmosfera, aiutando a regolare il clima.</li>
+                    <li><strong>Fonte di Energia e Materiali:</strong> La biomassa prodotta è fonte di combustibili fossili (formatisi in ere geologiche), legname, fibre tessili, e molto altro.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="quiz">
+            <div class="container">
+                <h2>🎮 Mettiti alla Prova: Quiz sulla Fotosintesi!</h2>
+                <p>Presto disponibile! Una serie di domande per testare la tua conoscenza.</p>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Quale gas viene assorbito dalle piante durante la fotosintesi?</p>
+                        <label><input type="radio" name="q1" value="a"> Ossigeno</label><br>
+                        <label><input type="radio" name="q1" value="b"> Anidride Carbonica</label><br>
+                        <label><input type="radio" name="q1" value="c"> Azoto</label><br>
+                    </div>
+                    <button type="submit">Invia Risposte</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="glossario">
+            <div class="container">
+                <h2>📚 Glossario</h2>
+                <dl>
+                    <dt>Clorofilla:</dt>
+                    <dd>Pigmento verde presente nei cloroplasti che assorbe l'energia luminosa.</dd>
+                    <dt>Cloroplasto:</dt>
+                    <dd>Organello cellulare dove avviene la fotosintesi nelle piante e nelle alghe.</dd>
+                    <dt>Tilacoide:</dt>
+                    <dd>Struttura a forma di sacchetto appiattito all'interno del cloroplasto, sede della fase luminosa.</dd>
+                    <dt>Stroma:</dt>
+                    <dd>Matrice fluida all'interno del cloroplasto, sede del Ciclo di Calvin.</dd>
+                    <dt>ATP (Adenosina Trifosfato):</dt>
+                    <dd>Molecola che immagazzina e trasporta energia chimica nelle cellule.</dd>
+                    <dt>NADPH (Nicotinammide Adenina Dinucleotide Fosfato Ridotto):</dt>
+                    <dd>Molecola che trasporta elettroni ad alta energia, utilizzata nel Ciclo di Calvin.</dd>
+                    </dl>
+            </div>
+        </section>
+
+        <section id="risorse">
+            <div class="container">
+                <h2>🔗 Risorse Utili per Approfondire</h2>
+                <ul>
+                    <li><a href="https://it.wikipedia.org/wiki/Fotosintesi_clorofilliana" target="_blank" rel="noopener noreferrer">Fotosintesi Clorofilliana - Wikipedia</a></li>
+                    <li><a href="https://www.khanacademy.org/science/biology/photosynthesis-in-plants" target="_blank" rel="noopener noreferrer">Photosynthesis - Khan Academy (in inglese)</a></li>
+                    </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> WebApp Fotosintesi. Creata a scopo didattico.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Piccolo script per l'anno corrente nel footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
