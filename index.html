@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opere d'Arte</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Opere d'Arte</h1>
+  <ul>
+    <li onclick="mostraTesto('cenacolo')">Cenacolo</li>
+    <li onclick="mostraTesto('gioconda')">Gioconda</li>
+    <li onclick="mostraTesto('cappella')">Cappella Sistina</li>
+  </ul>
+  <div id="testo" class="testo"></div>
+
+  <script>
+    const testi = {
+      cenacolo: "Il Cenacolo di Leonardo da Vinci rappresenta l'Ultima Cena e si trova a Milano.",
+      gioconda: "La Gioconda è il celebre ritratto dipinto da Leonardo da Vinci, esposto al Louvre.",
+      cappella: "La Cappella Sistina ospita gli affreschi di Michelangelo, inclusa la Creazione di Adamo."
+    };
+
+    function mostraTesto(chiave) {
+      document.getElementById('testo').textContent = testi[chiave];
+    }
+  </script>
+</body>
+</html>
