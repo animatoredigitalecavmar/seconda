@@ -1,49 +1,131 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Turistica di Roma</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif; /* Un font più classico per Roma */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #fdfae6; /* Un colore più caldo */
+            color: #444;
+        }
+        header {
+            background: #6a0000; /* Rosso scuro, quasi bordeaux */
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            font-size: 1.2em;
+        }
+        nav ul {
+            padding: 0;
+            list-style: none;
+            background: #8b0000; /* Un rosso leggermente più chiaro per la nav */
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 25px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: inline-block;
+            transition: background 0.3s ease; /* Transizione fluida al passaggio del mouse */
+        }
+        nav ul li a:hover {
+            background: #a00000;
+        }
+        .container {
+            width: 85%;
+            margin: auto;
+            overflow: hidden;
+            padding: 30px 0;
+        }
+        .monument {
+            background: #fff;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Ombra più pronunciata */
+            border-left: 5px solid #b22222; /* Bordo laterale per accentuare */
+        }
+        .monument h2 {
+            color: #b22222; /* Rosso mattone */
+            font-family: 'Georgia', serif;
+            font-size: 2.2em;
+            margin-top: 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .monument p {
+            text-align: justify;
+        }
+        .monument p strong {
+            color: #8b0000;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #6a0000;
+            color: #fff;
+            margin-top: 30px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Benvenuti a Roma!</h1>
+        <p class="subtitle">Un viaggio attraverso la storia e la bellezza eterna</p>
+    </header>
 
-const places = {
-  Cenacolo: "/images/cenacolo.jpg",
-  "Sant'Ambrogio": "/images/santambrogio.jpg",
-  Naviglio: "/images/naviglio.jpg",
-  "Sant'Eustorgio": "/images/santeustorgio.jpg",
-};
+    <nav>
+        <ul>
+            <li><a href="#colosseo">Colosseo</a></li>
+            <li><a href="#fontana-di-trevi">Fontana di Trevi</a></li>
+            <li><a href="#pantheon">Pantheon</a></li>
+        </ul>
+    </nav>
 
-export default function MilanoWebApp() {
-  const [selected, setSelected] = useState(null);
+    <div class="container">
+        <section id="colosseo" class="monument">
+            <h2>Colosseo</h2>
+            <p>Il Colosseo, o Anfiteatro Flavio, è il più grande anfiteatro mai costruito e rimane un'icona della Roma Imperiale. Completato nell'80 d.C., era il palcoscenico di combattimenti tra gladiatori, simulazioni di battaglie navali e drammi pubblici. Camminare al suo interno è un'esperienza mozzafiato che ti trasporta indietro nel tempo, permettendoti di immaginare la grandezza e la brutalità dell'antica Roma. È uno dei siti archeologici più visitati al mondo.</p>
+            <p><strong>Cosa non perdere:</strong> L'arena, gli ipogei (visita guidata), la vista dall'esterno al tramonto.</p>
+        </section>
 
-  return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start p-8 space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Scopri Milano</h1>
-      <div className="grid grid-cols-2 gap-4">
-        {Object.keys(places).map((place) => (
-          <button
-            key={place}
-            onClick={() => setSelected(place)}
-            className="bg-white text-gray-800 border border-gray-300 rounded-2xl px-6 py-3 shadow hover:shadow-lg transition text-lg italic"
-            style={{ backgroundColor: '#f8f0e3' }}
-          >
-            {place}
-          </button>
-        ))}
-      </div>
+        <section id="fontana-di-trevi" class="monument">
+            <h2>Fontana di Trevi</h2>
+            <p>La Fontana di Trevi è una delle fontane barocche più famose al mondo e un capolavoro di architettura e scultura. Progettata da Nicola Salvi e completata da Giuseppe Pannini nel 1762, è un trionfo di travertino raffigurante Oceano su un cocchio a forma di conchiglia trainato da cavalli marini. La tradizione vuole che lanciando una moneta nella fontana, con le spalle rivolte ad essa, si assicuri il ritorno a Roma.</p>
+            <p><strong>Cosa non perdere:</strong> Lanciare la moneta, ammirare le sculture dettagliate, l'atmosfera magica di sera.</p>
+        </section>
 
-      {selected && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-6"
-        >
-          <div className="w-full max-w-xl bg-white rounded-xl p-4 shadow">
-            <img
-              src={places[selected]}
-              alt={selected}
-              className="w-full h-auto rounded-xl"
-            />
-            <p className="text-center mt-2 italic text-lg">{selected}</p>
-          </div>
-        </motion.div>
-      )}
+        <section id="pantheon" class="monument">
+            <h2>Pantheon</h2>
+            <p>Il Pantheon è un antico tempio romano, successivamente convertito in chiesa, famoso per la sua cupola mozzafiato con un'apertura centrale, l'oculo. Costruito originariamente da Agrippa e ricostruito da Adriano intorno al 126 d.C., è uno degli edifici meglio conservati dell'antica Roma. La sua architettura è un prodigio di ingegneria, e l'oculo è l'unica fonte di luce diretta, creando giochi di luce affascinanti. È anche il luogo di sepoltura di importanti figure italiane come Raffaello.</p>
+            <p><strong>Cosa non perdere:</strong> L'oculo, la cupola, le tombe reali, l'atmosfera imponente all'interno.</p>
+        </section>
     </div>
-  );
-}
 
+    <footer>
+        <p>&copy; 2025 Guida Turistica di Roma. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
