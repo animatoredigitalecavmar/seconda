@@ -3,129 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guida Turistica di Roma</title>
+    <title>Gli errori nelle equazioni di primo grado</title>
     <style>
         body {
-            font-family: 'Times New Roman', serif; /* Un font più classico per Roma */
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
-            background: #fdfae6; /* Un colore più caldo */
-            color: #444;
-        }
-        header {
-            background: #6a0000; /* Rosso scuro, quasi bordeaux */
-            color: #fff;
-            padding: 1.5rem 0;
+            padding: 20px;
             text-align: center;
-        }
-        h1 {
-            font-family: 'Georgia', serif;
-            font-size: 2.8em;
-            margin-bottom: 5px;
-        }
-        p.subtitle {
-            font-size: 1.2em;
-        }
-        nav ul {
-            padding: 0;
-            list-style: none;
-            background: #8b0000; /* Un rosso leggermente più chiaro per la nav */
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 25px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 20px;
-            display: inline-block;
-            transition: background 0.3s ease; /* Transizione fluida al passaggio del mouse */
-        }
-        nav ul li a:hover {
-            background: #a00000;
         }
         .container {
-            width: 85%;
+            max-width: 800px;
             margin: auto;
-            overflow: hidden;
-            padding: 30px 0;
-        }
-        .monument {
-            background: #fff;
-            padding: 25px;
-            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Ombra più pronunciata */
-            border-left: 5px solid #b22222; /* Bordo laterale per accentuare */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .monument h2 {
-            color: #b22222; /* Rosso mattone */
-            font-family: 'Georgia', serif;
-            font-size: 2.2em;
-            margin-top: 0;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+        h1 {
+            color: #333;
         }
-        .monument p {
-            text-align: justify;
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
         }
-        .monument p strong {
-            color: #8b0000;
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
         }
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #6a0000;
-            color: #fff;
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .content {
             margin-top: 30px;
+            text-align: left;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none; /* Initially hidden */
         }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
+        .content h2 {
+            color: #555;
+        }
+        .content p {
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Benvenuti a Roma!</h1>
-        <p class="subtitle">Un viaggio attraverso la storia e la bellezza eterna</p>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#colosseo">Colosseo</a></li>
-            <li><a href="#fontana-di-trevi">Fontana di Trevi</a></li>
-            <li><a href="#pantheon">Pantheon</a></li>
-        </ul>
-    </nav>
+<div class="container">
+    <h1>I principali errori nelle equazioni di primo grado</h1>
+    <p>Clicca sui bottoni per scoprire e imparare a evitare gli errori più comuni.</p>
 
-    <div class="container">
-        <section id="colosseo" class="monument">
-            <h2>Colosseo</h2>
-            <p>Il Colosseo, o Anfiteatro Flavio, è il più grande anfiteatro mai costruito e rimane un'icona della Roma Imperiale. Completato nell'80 d.C., era il palcoscenico di combattimenti tra gladiatori, simulazioni di battaglie navali e drammi pubblici. Camminare al suo interno è un'esperienza mozzafiato che ti trasporta indietro nel tempo, permettendoti di immaginare la grandezza e la brutalità dell'antica Roma. È uno dei siti archeologici più visitati al mondo.</p>
-            <p><strong>Cosa non perdere:</strong> L'arena, gli ipogei (visita guidata), la vista dall'esterno al tramonto.</p>
-        </section>
-
-        <section id="fontana-di-trevi" class="monument">
-            <h2>Fontana di Trevi</h2>
-            <p>La Fontana di Trevi è una delle fontane barocche più famose al mondo e un capolavoro di architettura e scultura. Progettata da Nicola Salvi e completata da Giuseppe Pannini nel 1762, è un trionfo di travertino raffigurante Oceano su un cocchio a forma di conchiglia trainato da cavalli marini. La tradizione vuole che lanciando una moneta nella fontana, con le spalle rivolte ad essa, si assicuri il ritorno a Roma.</p>
-            <p><strong>Cosa non perdere:</strong> Lanciare la moneta, ammirare le sculture dettagliate, l'atmosfera magica di sera.</p>
-        </section>
-
-        <section id="pantheon" class="monument">
-            <h2>Pantheon</h2>
-            <p>Il Pantheon è un antico tempio romano, successivamente convertito in chiesa, famoso per la sua cupola mozzafiato con un'apertura centrale, l'oculo. Costruito originariamente da Agrippa e ricostruito da Adriano intorno al 126 d.C., è uno degli edifici meglio conservati dell'antica Roma. La sua architettura è un prodigio di ingegneria, e l'oculo è l'unica fonte di luce diretta, creando giochi di luce affascinanti. È anche il luogo di sepoltura di importanti figure italiane come Raffaello.</p>
-            <p><strong>Cosa non perdere:</strong> L'oculo, la cupola, le tombe reali, l'atmosfera imponente all'interno.</p>
-        </section>
+    <div class="menu">
+        <button class="btn" onclick="showContent('transposition')">Errore di Trasporto</button>
+        <button class="btn" onclick="showContent('sign')">Errore di Segno</button>
+        <button class="btn" onclick="showContent('division')">Errore di Divisione</button>
+        <button class="btn" onclick="showContent('parentheses')">Errore con le Parentesi</button>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Guida Turistica di Roma. Tutti i diritti riservati.</p>
-    </footer>
+    <div id="transposition" class="content">
+        <h2>L'Errore di Trasporto</h2>
+        <p>L'errore più comune si verifica quando si sposta un termine da un membro all'altro dell'equazione senza cambiargli il segno. Ricorda sempre la <strong>legge del trasporto</strong>: se un termine attraversa l'uguale, il suo segno deve cambiare. Ad esempio:</p>
+        <p><strong>Corretto:</strong> $x + 3 = 7 \implies x = 7 - 3 \implies x = 4$</p>
+        <p><strong>Sbagliato:</strong> $x + 3 = 7 \implies x = 7 + 3 \implies x = 10$</p>
+    </div>
+
+    <div id="sign" class="content">
+        <h2>L'Errore di Segno</h2>
+        <p>Quando si risolve un'equazione, è facile dimenticare di applicare la regola dei segni, specialmente quando si moltiplica o si divide per un numero negativo. Ad esempio:</p>
+        <p><strong>Corretto:</strong> $-2x = 8 \implies x = \frac{8}{-2} \implies x = -4$</p>
+        <p><strong>Sbagliato:</strong> $-2x = 8 \implies x = 4$ (errore sul segno)</p>
+    </div>
+
+    <div id="division" class="content">
+        <h2>L'Errore di Divisione</h2>
+        <p>Molti studenti, per isolare la $x$, tendono a dividere il coefficiente per il termine noto, invece del contrario. Ricorda: si divide sempre il <strong>termine noto</strong> (quello senza $x$) per il <strong>coefficiente</strong> della $x$.</p>
+        <p><strong>Corretto:</strong> $4x = 12 \implies x = \frac{12}{4} \implies x = 3$</p>
+        <p><strong>Sbagliato:</strong> $4x = 12 \implies x = \frac{4}{12} \implies x = \frac{1}{3}$</p>
+    </div>
+
+    <div id="parentheses" class="content">
+        <h2>L'Errore con le Parentesi</h2>
+        <p>Quando un segno meno precede una parentesi, devi cambiare il segno a <strong>tutti</strong> i termini all'interno della parentesi, non solo al primo. Questo è un errore molto comune.</p>
+        <p><strong>Corretto:</strong> $5 - (2x - 1) = 4 \implies 5 - 2x + 1 = 4 \implies 6 - 2x = 4$</p>
+        <p><strong>Sbagliato:</strong> $5 - (2x - 1) = 4 \implies 5 - 2x - 1 = 4$ (errore sul segno del 1)</p>
+    </div>
+
+</div>
+
+<script>
+    function showContent(id) {
+        // Nasconde tutti i contenuti
+        var contents = document.getElementsByClassName('content');
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].style.display = 'none';
+        }
+        // Mostra solo il contenuto selezionato
+        var selectedContent = document.getElementById(id);
+        if (selectedContent) {
+            selectedContent.style.display = 'block';
+        }
+    }
+</script>
+
 </body>
 </html>
