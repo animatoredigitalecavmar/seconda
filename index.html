@@ -831,4 +831,262 @@
                     `;
                 } else if (exercise.type === 'multiple') {
                     content += '<div class="multiple-choice">';
-                    exercise.choices.forEach((choice,
+                    exercise.choices.forEach((choice, choiceIndex) => {
+                        content += `<div class="choice-btn" onclick="selectChoice(${level}, ${index}, ${choiceIndex})">${choice}</div>`;
+                    });
+                    content += '</div>';
+                    content += `<button class="btn" onclick="checkMultipleChoice(${level}, ${index})" disabled id="check-${level}-${index}">Check Answer</button>`;
+                }
+                
+                content += `
+                    <div id="feedback-${level}-${index}"></div>
+                    <div class="hint-box" style="display: none;" id="hint-${level}-${index}">
+                        💡 ${exercise.hint}
+                    </div>
+                `;
+                
+                exerciseDiv.innerHTML = content;
+                container.appendChild(exerciseDiv);
+            });
+        }
+
+        let selectedChoices = {};
+
+        function selectChoice(level, exerciseIndex, choiceIndex) {
+            const exerciseId = `${level}-${exerciseIndex}`;
+            selectedChoices[exerciseId] = choiceIndex;
+            
+            // Update UI
+            const choices = document.querySelectorAll(`#exercise-${exerciseId} .choice-btn`);
+            choices.forEach((choice, index) => {
+                choice.classList.remove('selected');
+                if (index === choiceIndex) {
+                    choice.classList.add('selected');
+                }
+            });
+            
+            // Enable check button
+            document.getElementById(`check-${level}-${exerciseIndex}`).disabled = false;
+        }
+
+        function checkAnswer(level, exerciseIndex) {
+            const exercise = exercises[level][exerciseIndex];
+            const userAnswer = document.getElementById(`input-${level}-${exerciseIndex}`).value.trim().toLowerCase();
+            const correctAnswer = exercise.answer.toLowerCase();
+            const inputElement = document.getElementById(`input-${level}-${exerciseIndex}`);
+            const feedbackElement = document.getElementById(`feedback-${level}-${exerciseIndex}`);
+            const hintElement = document.getElementById(`hint-${level}-${exerciseIndex}`);
+            
+            if (userAnswer === correctAnswer) {
+                inputElement.classList.add('correct');
+                feedbackElement.innerHTML = '<div class="feedback correct">✅ Excellent! That\'s correct!</div>';
+                document.getElementById(`exercise-${level}-${exerciseIndex}`).classList.add('completed');
+                
+                // Award points and update progress
+                awardPoints(level);
+                updateProgress(level);
+                
+                // Disable input and button
+                inputElement.disabled = true;
+                inputElement.nextElementSibling.disabled = true;
+                
+            } else {
+                inputElement.classList.add('incorrect');
+                inputElement.classList.add('shake');
+                setTimeout(() => inputElement.classList.remove('shake'), 500);
+                
+                feedbackElement.innerHTML = `<div class="feedback incorrect">❌ Not quite right. The correct answer is: <strong>${exercise.answer}</strong></div>`;
+                hintElement.style.display = 'block';
+                
+                // Reset streak
+                currentStreak = 0;
+                updateStats();
+            }
+        }
+
+        function checkMultipleChoice(level, exerciseIndex) {
+            const exerciseId = `${level}-${exerciseIndex}`;
+            const exercise = exercises[level][exerciseIndex];
+            const selectedChoice = selectedChoices[exerciseId];
+            const feedbackElement = document.getElementById(`feedback-${exerciseId}`);
+            const hintElement = document.getElementById(`hint-${exerciseId}`);
+            const choices = document.querySelectorAll(`#exercise-${exerciseId} .choice-btn`);
+            
+            if (selectedChoice === exercise.correct) {
+                choices[selectedChoice].classList.add('correct');
+                feedbackElement.innerHTML = '<div class="feedback correct">✅ Perfect! That\'s the right answer!</div>';
+                document.getElementById(`exercise-${exerciseId}`).classList.add('completed');
+                
+                // Award points and update progress
+                awardPoints(level);
+                updateProgress(level);
+                
+                // Disable button
+                document.getElementById(`check-${level}-${exerciseIndex}`).disabled = true;
+                
+            } else {
+                choices[selectedChoice].classList.add('incorrect');
+                choices[exercise.correct].classList.add('correct');
+                
+                feedbackElement.innerHTML = '<div class="feedback incorrect">❌ Not correct. The right answer is highlighted in green.</div>';
+                hintElement.style.display = 'block';
+                
+                // Reset streak
+                currentStreak = 0;
+                updateStats();
+            }
+        }
+
+        function awardPoints(level) {
+            const points = rewards.points[level - 1];
+            totalPoints += points;
+            correctAnswers++;
+            currentStreak++;
+            
+            updateStats();
+            showReward(points, level);
+            checkBadges();
+        }
+
+        function updateProgress(level) {
+            levelProgress[level - 1]++;
+            const progress = (levelProgress[level - 1] / exercises[level].length) * 100;
+            
+            document.getElementById(`progress${level}`).style.width = progress + '%';
+            document.getElementById(`progress-text${level}`).textContent = 
+                `${levelProgress[level - 1]}/${exercises[level].length} completed`;
+            
+            if (levelProgress[level - 1] === exercises[level].length) {
+                levelCompleted[level - 1] = true;
+                setTimeout(() => showLevelComplete(level), 1000);
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('total-points').textContent = totalPoints;
+            document.getElementById('correct-answers').textContent = correctAnswers;
+            document.getElementById('current-streak').textContent = currentStreak;
+            document.getElementById('badges-earned').textContent = badgesEarned;
+        }
+
+        function checkBadges() {
+            const badges = rewards.badges;
+            
+            // Check score-based badges
+            if (correctAnswers === 5 && !document.querySelector('[data-badge="5"]')) {
+                earnBadge(badges[5], '5');
+            }
+            if (correctAnswers === 10 && !document.querySelector('[data-badge="10"]')) {
+                earnBadge(badges[10], '10');
+            }
+            if (correctAnswers === 20 && !document.querySelector('[data-badge="20"]')) {
+                earnBadge(badges[20], '20');
+            }
+            if (correctAnswers === 50 && !document.querySelector('[data-badge="50"]')) {
+                earnBadge(badges[50], '50');
+            }
+            
+            // Check streak badges
+            if (currentStreak === 5 && !document.querySelector('[data-badge="streak5"]')) {
+                earnBadge(badges.streak5, 'streak5');
+            }
+            if (currentStreak === 10 && !document.querySelector('[data-badge="streak10"]')) {
+                earnBadge(badges.streak10, 'streak10');
+            }
+            
+            // Check level completion badges
+            levelCompleted.forEach((completed, index) => {
+                const level = index + 1;
+                const badgeKey = `level${level}`;
+                if (completed && !document.querySelector(`[data-badge="${badgeKey}"]`)) {
+                    earnBadge(badges[badgeKey], badgeKey);
+                }
+            });
+        }
+
+        function earnBadge(badge, key) {
+            badgesEarned++;
+            const badgeElement = document.createElement('div');
+            badgeElement.className = 'achievement-badge';
+            badgeElement.setAttribute('data-badge', key);
+            badgeElement.innerHTML = `${badge.icon} ${badge.name}`;
+            badgeElement.title = badge.description;
+            
+            // Add to stats area (you could create a badges display area)
+            updateStats();
+        }
+
+        function showReward(points, level) {
+            const rewardIcon = document.getElementById('reward-icon');
+            const rewardTitle = document.getElementById('reward-title');
+            const rewardMessage = document.getElementById('reward-message');
+            const rewardBadges = document.getElementById('reward-badges');
+            
+            // Different rewards based on performance
+            const icons = ['🎉', '🌟', '✨', '🏆', '🎯', '⚡', '🔥'];
+            const messages = [
+                'Great job!', 'Excellent!', 'Outstanding!', 'Fantastic!', 
+                'Brilliant!', 'Superb!', 'Amazing!'
+            ];
+            
+            rewardIcon.textContent = icons[Math.floor(Math.random() * icons.length)];
+            rewardTitle.textContent = messages[Math.floor(Math.random() * messages.length)];
+            rewardMessage.textContent = `You earned ${points} points!`;
+            
+            if (currentStreak >= 5) {
+                rewardMessage.textContent += ` 🔥 ${currentStreak} in a row!`;
+            }
+            
+            // Show recent badges
+            rewardBadges.innerHTML = '';
+            const recentBadges = document.querySelectorAll('.achievement-badge');
+            if (recentBadges.length > 0) {
+                const lastBadge = recentBadges[recentBadges.length - 1];
+                if (lastBadge) {
+                    rewardBadges.innerHTML = `<p>New Badge: ${lastBadge.innerHTML}</p>`;
+                }
+            }
+            
+            // Show popup
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('reward-popup').classList.add('show');
+        }
+
+        function showLevelComplete(level) {
+            const rewardIcon = document.getElementById('reward-icon');
+            const rewardTitle = document.getElementById('reward-title');
+            const rewardMessage = document.getElementById('reward-message');
+            const rewardBadges = document.getElementById('reward-badges');
+            
+            rewardIcon.textContent = '🏆';
+            rewardTitle.textContent = `Level ${level} Complete!`;
+            rewardMessage.textContent = 'Congratulations! You\'ve mastered this level!';
+            
+            const bonus = level * 50;
+            totalPoints += bonus;
+            updateStats();
+            rewardMessage.textContent += ` Bonus: ${bonus} points!`;
+            
+            rewardBadges.innerHTML = `<p>🎖️ Level ${level} Badge Earned!</p>`;
+            
+            // Show popup
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('reward-popup').classList.add('show');
+        }
+
+        function closeReward() {
+            document.getElementById('overlay').classList.remove('show');
+            document.getElementById('reward-popup').classList.remove('show');
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStats();
+            selectLevel(1); // Start with level 1
+        });
+
+        // Close popup when clicking overlay
+        document.getElementById('overlay').addEventListener('click', closeReward);
+    </script>
+</body>
+</html>
