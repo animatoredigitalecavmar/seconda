@@ -3,120 +3,584 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gli errori nelle equazioni di primo grado</title>
+    <title>Equazioni di Primo Grado - Unità di Apprendimento</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        * {
             margin: 0;
-            padding: 20px;
-            text-align: center;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             color: #333;
         }
-        .menu {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .nav-menu {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #4a5568;
+            min-width: 150px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            min-height: 500px;
+        }
+
+        .content-section.hidden {
+            display: none;
+        }
+
+        .section-title {
+            color: #4a5568;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .theory-content {
+            line-height: 1.8;
+        }
+
+        .theory-block {
+            background: #f7fafc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .formula {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .example {
+            background: #e6fffa;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #38b2ac;
+        }
+
+        .exercise-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
+
+        .exercise-card {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .exercise-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            margin: 10px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .exercise-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
         .btn {
-            background-color: #4CAF50;
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            padding: 15px 25px;
             border: none;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
         }
+
         .btn:hover {
-            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
-        .content {
-            margin-top: 30px;
-            text-align: left;
+
+        .feedback {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        .feedback.correct {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 2px solid #38a169;
+        }
+
+        .feedback.incorrect {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 2px solid #e53e3e;
+        }
+
+        .case-study {
+            background: #fff5f5;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #f56565;
+        }
+
+        .interactive-demo {
+            background: #f0fff4;
             padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            display: none; /* Initially hidden */
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
         }
-        .content h2 {
-            color: #555;
+
+        .slider-container {
+            margin: 20px 0;
         }
-        .content p {
-            line-height: 1.6;
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 80%;
+                margin: 5px 0;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .exercise-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>📐 Equazioni di Primo Grado</h1>
+            <p>Unità di Apprendimento Interattiva per la Classe Prima</p>
+        </div>
 
-<div class="container">
-    <h1>I principali errori nelle equazioni di primo grado</h1>
-    <p>Clicca sui bottoni per scoprire e imparare a evitare gli errori più comuni.</p>
+        <div class="nav-menu">
+            <button class="nav-btn active" onclick="showSection('teoria')">📚 Teoria</button>
+            <button class="nav-btn" onclick="showSection('esercizi')">✏️ Esercizi</button>
+            <button class="nav-btn" onclick="showSection('casi-uso')">🏠 Casi d'Uso</button>
+        </div>
 
-    <div class="menu">
-        <button class="btn" onclick="showContent('transposition')">Errore di Trasporto</button>
-        <button class="btn" onclick="showContent('sign')">Errore di Segno</button>
-        <button class="btn" onclick="showContent('division')">Errore di Divisione</button>
-        <button class="btn" onclick="showContent('parentheses')">Errore con le Parentesi</button>
+        <!-- SEZIONE TEORIA -->
+        <div id="teoria" class="content-section">
+            <h2 class="section-title">Teoria delle Equazioni di Primo Grado</h2>
+            
+            <div class="theory-content">
+                <div class="theory-block">
+                    <h3>🎯 Che cos'è un'equazione?</h3>
+                    <p>Un'equazione è un'uguaglianza matematica che contiene una o più incognite (di solito indicate con lettere come x, y, z). L'obiettivo è trovare il valore dell'incognita che rende vera l'uguaglianza.</p>
+                </div>
+
+                <div class="formula">
+                    Forma generale: ax + b = c
+                </div>
+
+                <div class="theory-block">
+                    <h3>🔍 Elementi di un'equazione</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Primo membro:</strong> la parte sinistra dell'uguale</li>
+                        <li><strong>Secondo membro:</strong> la parte destra dell'uguale</li>
+                        <li><strong>Incognita:</strong> la variabile da determinare (es. x)</li>
+                        <li><strong>Coefficienti:</strong> i numeri che moltiplicano l'incognita</li>
+                        <li><strong>Termine noto:</strong> i numeri senza incognita</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <h4>📝 Esempio pratico:</h4>
+                    <p>Nell'equazione <strong>3x + 5 = 14</strong>:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Primo membro: 3x + 5</li>
+                        <li>Secondo membro: 14</li>
+                        <li>Incognita: x</li>
+                        <li>Coefficiente: 3</li>
+                        <li>Termine noto: 5</li>
+                    </ul>
+                </div>
+
+                <div class="theory-block">
+                    <h3>⚖️ Principi di equivalenza</h3>
+                    <p><strong>1° Principio:</strong> Aggiungendo o sottraendo lo stesso numero ad entrambi i membri, l'equazione non cambia.</p>
+                    <p><strong>2° Principio:</strong> Moltiplicando o dividendo entrambi i membri per lo stesso numero diverso da zero, l'equazione non cambia.</p>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4>🎮 Dimostrazione Interattiva</h4>
+                    <p>Equazione: 2x + 3 = 9</p>
+                    <div id="step-demo">
+                        <p id="current-equation">2x + 3 = 9</p>
+                        <button class="btn" onclick="nextStep()">Prossimo Passaggio</button>
+                        <p id="explanation">Clicca per vedere i passaggi di risoluzione</p>
+                    </div>
+                </div>
+
+                <div class="theory-block">
+                    <h3>🔧 Metodo di risoluzione</h3>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Spostare tutti i termini con l'incognita al primo membro</li>
+                        <li>Spostare tutti i termini noti al secondo membro</li>
+                        <li>Semplificare entrambi i membri</li>
+                        <li>Dividere per il coefficiente dell'incognita</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE ESERCIZI -->
+        <div id="esercizi" class="content-section hidden">
+            <h2 class="section-title">Esercizi Interattivi</h2>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <p style="text-align: center; margin-bottom: 20px;">Progresso: <span id="progress-text">0/6</span> esercizi completati</p>
+
+            <div class="exercise-container">
+                <div class="exercise-card">
+                    <h3>Esercizio 1 - Livello Base</h3>
+                    <p>Risolvi: <strong>x + 5 = 12</strong></p>
+                    <input type="number" class="exercise-input" id="ex1" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(1, 7)">Verifica</button>
+                    <div id="feedback1"></div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Esercizio 2 - Livello Base</h3>
+                    <p>Risolvi: <strong>3x = 15</strong></p>
+                    <input type="number" class="exercise-input" id="ex2" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(2, 5)">Verifica</button>
+                    <div id="feedback2"></div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Esercizio 3 - Livello Intermedio</h3>
+                    <p>Risolvi: <strong>2x + 4 = 10</strong></p>
+                    <input type="number" class="exercise-input" id="ex3" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(3, 3)">Verifica</button>
+                    <div id="feedback3"></div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Esercizio 4 - Livello Intermedio</h3>
+                    <p>Risolvi: <strong>5x - 3 = 17</strong></p>
+                    <input type="number" class="exercise-input" id="ex4" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(4, 4)">Verifica</button>
+                    <div id="feedback4"></div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Esercizio 5 - Livello Avanzato</h3>
+                    <p>Risolvi: <strong>3x + 7 = x + 15</strong></p>
+                    <input type="number" class="exercise-input" id="ex5" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(5, 4)">Verifica</button>
+                    <div id="feedback5"></div>
+                </div>
+
+                <div class="exercise-card">
+                    <h3>Esercizio 6 - Livello Avanzato</h3>
+                    <p>Risolvi: <strong>4(x - 2) = 2x + 6</strong></p>
+                    <input type="number" class="exercise-input" id="ex6" placeholder="Inserisci il valore di x">
+                    <button class="btn" onclick="checkAnswer(6, 7)">Verifica</button>
+                    <div id="feedback6"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEZIONE CASI D'USO -->
+        <div id="casi-uso" class="content-section hidden">
+            <h2 class="section-title">Equazioni nella Vita Quotidiana</h2>
+            
+            <div class="case-study">
+                <h3>🛍️ Caso 1: Shopping e Budget</h3>
+                <p><strong>Situazione:</strong> Maria ha 50€ e vuole comprare dei libri che costano 8€ ciascuno. Vuole sapere quanti libri può comprare tenendo almeno 10€ per il trasporto.</p>
+                <p><strong>Equazione:</strong> 8x + 10 ≤ 50</p>
+                <p><strong>Soluzione:</strong> 8x ≤ 40, quindi x ≤ 5. Maria può comprare al massimo 5 libri.</p>
+                <div class="interactive-demo">
+                    <h4>Simula il problema:</h4>
+                    <p>Budget: <span id="budget-display">50</span>€</p>
+                    <input type="range" class="slider" id="budget-slider" min="30" max="100" value="50" oninput="updateBudget()">
+                    <p>Costo per libro: <span id="cost-display">8</span>€</p>
+                    <input type="range" class="slider" id="cost-slider" min="5" max="15" value="8" oninput="updateBudget()">
+                    <p>Trasporto: <span id="transport-display">10</span>€</p>
+                    <input type="range" class="slider" id="transport-slider" min="5" max="20" value="10" oninput="updateBudget()">
+                    <p><strong>Libri acquistabili: <span id="books-result">5</span></strong></p>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>🏃‍♀️ Caso 2: Pianificazione di un Viaggio</h3>
+                <p><strong>Situazione:</strong> Luca deve percorrere 240 km in auto. Sa che consuma 6 litri ogni 100 km e la benzina costa 1.5€ al litro. Quanto spenderà per il viaggio?</p>
+                <p><strong>Ragionamento:</strong> Consumo totale = (240/100) × 6 = 14.4 litri</p>
+                <p><strong>Equazione:</strong> Costo = 14.4 × 1.5 = 21.6€</p>
+            </div>
+
+            <div class="case-study">
+                <h3>📱 Caso 3: Piano Telefonico</h3>
+                <p><strong>Situazione:</strong> Un piano telefonico costa 15€ al mese + 0.10€ per ogni minuto di chiamata. Se Andrea ha speso 23€ in un mese, quanti minuti ha telefonato?</p>
+                <p><strong>Equazione:</strong> 15 + 0.10x = 23</p>
+                <p><strong>Soluzione:</strong> 0.10x = 8, quindi x = 80 minuti</p>
+            </div>
+
+            <div class="case-study">
+                <h3>🍕 Caso 4: Organizzare una Festa</h3>
+                <p><strong>Situazione:</strong> Per una festa, ogni pizza costa 12€ e serve 4 persone. Se abbiamo 60€ per le pizze e siamo in 20 persone, possiamo comprare abbastanza pizze?</p>
+                <p><strong>Ragionamento:</strong> Pizze necessarie = 20/4 = 5 pizze</p>
+                <p><strong>Costo totale:</strong> 5 × 12 = 60€ (esatto!)</p>
+            </div>
+
+            <div class="case-study">
+                <h3>💰 Caso 5: Risparmi e Obiettivi</h3>
+                <p><strong>Situazione:</strong> Giulia vuole comprare una bicicletta che costa 250€. Ha già 80€ e riesce a risparmiare 15€ a settimana. In quante settimane potrà comprarla?</p>
+                <p><strong>Equazione:</strong> 80 + 15x = 250</p>
+                <p><strong>Soluzione:</strong> 15x = 170, quindi x = 11.33, circa 12 settimane</p>
+                
+                <div class="interactive-demo">
+                    <h4>Calcolatore di Risparmi:</h4>
+                    <p>Obiettivo: <input type="number" id="goal" value="250" onchange="calculateSavings()">€</p>
+                    <p>Già risparmiato: <input type="number" id="saved" value="80" onchange="calculateSavings()">€</p>
+                    <p>Risparmio settimanale: <input type="number" id="weekly" value="15" onchange="calculateSavings()">€</p>
+                    <p><strong>Settimane necessarie: <span id="weeks-result">12</span></strong></p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="transposition" class="content">
-        <h2>L'Errore di Trasporto</h2>
-        <p>L'errore più comune si verifica quando si sposta un termine da un membro all'altro dell'equazione senza cambiargli il segno. Ricorda sempre la <strong>legge del trasporto</strong>: se un termine attraversa l'uguale, il suo segno deve cambiare. Ad esempio:</p>
-        <p><strong>Corretto:</strong> $x + 3 = 7 \implies x = 7 - 3 \implies x = 4$</p>
-        <p><strong>Sbagliato:</strong> $x + 3 = 7 \implies x = 7 + 3 \implies x = 10$</p>
-    </div>
+    <script>
+        let completedExercises = 0;
+        let stepIndex = 0;
+        const demoSteps = [
+            { equation: "2x + 3 = 9", explanation: "Equazione iniziale" },
+            { equation: "2x + 3 - 3 = 9 - 3", explanation: "Sottraggo 3 da entrambi i membri" },
+            { equation: "2x = 6", explanation: "Semplifico" },
+            { equation: "2x ÷ 2 = 6 ÷ 2", explanation: "Divido per 2 entrambi i membri" },
+            { equation: "x = 3", explanation: "Soluzione trovata!" }
+        ];
 
-    <div id="sign" class="content">
-        <h2>L'Errore di Segno</h2>
-        <p>Quando si risolve un'equazione, è facile dimenticare di applicare la regola dei segni, specialmente quando si moltiplica o si divide per un numero negativo. Ad esempio:</p>
-        <p><strong>Corretto:</strong> $-2x = 8 \implies x = \frac{8}{-2} \implies x = -4$</p>
-        <p><strong>Sbagliato:</strong> $-2x = 8 \implies x = 4$ (errore sul segno)</p>
-    </div>
-
-    <div id="division" class="content">
-        <h2>L'Errore di Divisione</h2>
-        <p>Molti studenti, per isolare la $x$, tendono a dividere il coefficiente per il termine noto, invece del contrario. Ricorda: si divide sempre il <strong>termine noto</strong> (quello senza $x$) per il <strong>coefficiente</strong> della $x$.</p>
-        <p><strong>Corretto:</strong> $4x = 12 \implies x = \frac{12}{4} \implies x = 3$</p>
-        <p><strong>Sbagliato:</strong> $4x = 12 \implies x = \frac{4}{12} \implies x = \frac{1}{3}$</p>
-    </div>
-
-    <div id="parentheses" class="content">
-        <h2>L'Errore con le Parentesi</h2>
-        <p>Quando un segno meno precede una parentesi, devi cambiare il segno a <strong>tutti</strong> i termini all'interno della parentesi, non solo al primo. Questo è un errore molto comune.</p>
-        <p><strong>Corretto:</strong> $5 - (2x - 1) = 4 \implies 5 - 2x + 1 = 4 \implies 6 - 2x = 4$</p>
-        <p><strong>Sbagliato:</strong> $5 - (2x - 1) = 4 \implies 5 - 2x - 1 = 4$ (errore sul segno del 1)</p>
-    </div>
-
-</div>
-
-<script>
-    function showContent(id) {
-        // Nasconde tutti i contenuti
-        var contents = document.getElementsByClassName('content');
-        for (var i = 0; i < contents.length; i++) {
-            contents[i].style.display = 'none';
+        function showSection(sectionName) {
+            // Nascondi tutte le sezioni
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Mostra la sezione selezionata
+            document.getElementById(sectionName).classList.remove('hidden');
+            
+            // Aggiorna i pulsanti del menu
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
         }
-        // Mostra solo il contenuto selezionato
-        var selectedContent = document.getElementById(id);
-        if (selectedContent) {
-            selectedContent.style.display = 'block';
-        }
-    }
-</script>
 
+        function checkAnswer(exerciseNum, correctAnswer) {
+            const userAnswer = parseFloat(document.getElementById(`ex${exerciseNum}`).value);
+            const feedbackElement = document.getElementById(`feedback${exerciseNum}`);
+            
+            if (userAnswer === correctAnswer) {
+                feedbackElement.innerHTML = '<div class="feedback correct">✅ Corretto! Ottimo lavoro!</div>';
+                if (!feedbackElement.classList.contains('completed')) {
+                    completedExercises++;
+                    feedbackElement.classList.add('completed');
+                    updateProgress();
+                }
+            } else {
+                feedbackElement.innerHTML = '<div class="feedback incorrect">❌ Non corretto. Riprova! Suggerimento: ricontrolla i calcoli passo per passo.</div>';
+            }
+        }
+
+        function updateProgress() {
+            const progressFill = document.getElementById('progress');
+            const progressText = document.getElementById('progress-text');
+            const percentage = (completedExercises / 6) * 100;
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${completedExercises}/6`;
+            
+            if (completedExercises === 6) {
+                setTimeout(() => {
+                    alert('🎉 Congratulazioni! Hai completato tutti gli esercizi!');
+                }, 500);
+            }
+        }
+
+        function nextStep() {
+            if (stepIndex < demoSteps.length - 1) {
+                stepIndex++;
+                document.getElementById('current-equation').textContent = demoSteps[stepIndex].equation;
+                document.getElementById('explanation').textContent = demoSteps[stepIndex].explanation;
+            } else {
+                stepIndex = 0;
+                document.getElementById('current-equation').textContent = demoSteps[stepIndex].equation;
+                document.getElementById('explanation').textContent = demoSteps[stepIndex].explanation;
+            }
+        }
+
+        function updateBudget() {
+            const budget = parseInt(document.getElementById('budget-slider').value);
+            const cost = parseInt(document.getElementById('cost-slider').value);
+            const transport = parseInt(document.getElementById('transport-slider').value);
+            
+            document.getElementById('budget-display').textContent = budget;
+            document.getElementById('cost-display').textContent = cost;
+            document.getElementById('transport-display').textContent = transport;
+            
+            const books = Math.floor((budget - transport) / cost);
+            document.getElementById('books-result').textContent = Math.max(0, books);
+        }
+
+        function calculateSavings() {
+            const goal = parseFloat(document.getElementById('goal').value) || 0;
+            const saved = parseFloat(document.getElementById('saved').value) || 0;
+            const weekly = parseFloat(document.getElementById('weekly').value) || 1;
+            
+            const needed = goal - saved;
+            const weeks = Math.ceil(needed / weekly);
+            
+            document.getElementById('weeks-result').textContent = Math.max(0, weeks);
+        }
+
+        // Inizializza la pagina
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+            updateBudget();
+            calculateSavings();
+        });
+    </script>
 </body>
 </html>
